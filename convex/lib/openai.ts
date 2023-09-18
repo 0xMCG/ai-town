@@ -21,7 +21,7 @@ export async function chatCompletion(
   } = await retryWithBackoff(async () => {
     let openai_completions_url = 'https://api.openai.com/v1/chat/completions';
     if(process.env.OPENAI_API_BASE){
-      openai_completions_url = process.env.OPENAI_API_BASE + '/chat/completions';
+      openai_completions_url = process.env.OPENAI_API_BASE + '/v1/chat/completions';
     }
     const result = await fetch(openai_completions_url, {
       method: 'POST',
@@ -67,7 +67,7 @@ export async function fetchEmbeddingBatch(texts: string[]) {
   } = await retryWithBackoff(async () => {
     let openai_embeddings_url = 'https://api.openai.com/v1/embeddings';
     if(process.env.OPENAI_API_BASE){
-      openai_embeddings_url = process.env.OPENAI_API_BASE + '/chat/completions';
+      openai_embeddings_url = process.env.OPENAI_API_BASE + '/v1/chat/completions';
     }
     const result = await fetch(openai_embeddings_url, {
       method: 'POST',
